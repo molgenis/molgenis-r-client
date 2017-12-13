@@ -1,8 +1,3 @@
-library('RCurl')
-library('rjson')
-library('httr')
-library('ff')
-
 # Set the timezone
 options(tz="Europe/Amsterdam")
 Sys.setenv(TZ="Europe/Amsterdam")
