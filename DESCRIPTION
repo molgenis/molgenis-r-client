@@ -1,8 +1,7 @@
 Package: molgenisRApi
 Title: MOLGENIS R-api
 Version: 0.0.1
-Authors@R: person("Sido", "Haakma", email = "s.haakma@rug.nl",
-                  role = c("aut", "cre"))
+Authors@R: person("Sido", "Haakma", email = "s.haakma@rug.nl", devtoolsrole = c("aut", "cre"))
 Description: MOLGENIS R-api communicates with the MOLGENIS REST-API and can do data request with a secure connection.
 License: GPL
 Encoding: UTF-8

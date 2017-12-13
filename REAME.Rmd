@@ -35,3 +35,10 @@ With the devtools and the roxygen2 library you can develop on this package. By i
 library(devtools)
 library(roxygen2)
 ```
+
+@@ Todo
+
+- Make the pacakge releasable (Jenkins)
+- Perform Rstudio check
+- Move general documentation to molgenis docs
+- 
