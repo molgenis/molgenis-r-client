@@ -36,6 +36,18 @@ library(devtools)
 library(roxygen2)
 ```
 
+You can install the R-pacakge via Github when you have loaded the devtools-package (see above). Just run:
+
+```r
+install_github("#username#/#repo#")
+```
+
+Example:
+
+```r
+install_github("sidohaakma/molgenis-client-r-api")
+```
+
 @@ Todo
 
 - Make the pacakge releasable (Jenkins)
