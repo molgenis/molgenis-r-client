@@ -1,14 +1,15 @@
 Package: molgenisRApi
 Title: MOLGENIS R-api
 Version: 0.0.1
-Authors@R: person("Sido", "Haakma", email = "s.haakma@rug.nl", role = c("aut", "cre"))
-Description: MOLGENIS R-api communicates with the MOLGENIS REST-API and can do data request with a secure connection
-Depends: R (>= 3.4.1)
+Authors@R: person("Sido", "Haakma", email = "s.haakma@rug.nl",
+                  role = c("aut", "cre"))
+Description: MOLGENIS R-api communicates with the MOLGENIS REST-API and can do data request with a secure connection.
 License: GPL
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Depends:
+  R (>= 3.4.1),
   RCurl (>= 1.95.4.8),
   rjson (>= 0.2.15),
   httr (>= 1.3.1),

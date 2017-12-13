@@ -4,14 +4,17 @@
 \alias{molgenis.login}
 \title{Login to the rest api and create a session}
 \usage{
-molgenis.login(api.url, username, password)
+molgenis.login(molgenis.host, username, password)
 }
 \arguments{
-\item{api.url}{molgenis host}
+\item{molgenis.host}{MOLGENIS host url}
 
 \item{username}{your username}
 
 \item{password}{your password}
+}
+\value{
+molgenis token for further usage
 }
 \description{
 Login on a MOLGENIS host to communicate with REST API

@@ -303,13 +303,3 @@ molgenis.getAttributeMetaData <- local(function(entity, attribute){
   
   return (response)
 }, molgenis.env)
-
-#' Gets the cached server configuration
-#'    
-#' @return  list of cached server attributes
-#' 
-#' @export
-molgenis.cache <- function() {
-  molgenis.cache.token <- molgenis.env$molgenis.token
-  return(molgenis.cache.token)
-}

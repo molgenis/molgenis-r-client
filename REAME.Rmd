@@ -5,10 +5,33 @@ date: "12/11/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## MOLGENIS R-api
+
+The MOLGENIS R-api can communicate with a MOLGENIS host.
+
+## Usage
+
+You can import this project by executing:
+
+```r
+library(molgenisRApi)
 ```
 
-## MOLGENIS R API
+When you want to install the package and it's depodencies automatically you can execute:
 
-The MOLGENIS R API can communicate with a MOLGENIS host.
+```r
+install.packages("molgenisRApi", dependencies = TRUE)
+```
+
+This will import the right dependencies when you have installed them in your own environment.
+
+With ```molgenis.``` you can view which functions are available to use with a MOLGENIS instance.
+
+## Development
+
+With the devtools and the roxygen2 library you can develop on this package. By importing the two libraries you can document the code and generate other dev-stuff.
+
+```r
+library(devtools)
+library(roxygen2)
+```
