@@ -9,15 +9,12 @@ Description: MOLGENIS R-api communicates with the MOLGENIS
 License: GNU Lesser General Public License
 Encoding: UTF-8
 LazyData: true
-Imports:
-    RCurl,
-    rjson,
-    httr,
-    ff
 Depends:
-  R (>= 3.4.1),
+  R (>= 3.4.1)
+Imports:  
   RCurl (>= 1.95.4.8),
   rjson (>= 0.2.15),
   httr (>= 1.3.1),
-  ff (>= 2.2-13)
+  ff (>= 2.2-13),
+  knitr (>= 1.17)
 RoxygenNote: 6.0.1

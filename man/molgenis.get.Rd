@@ -16,6 +16,10 @@ molgenis.get(entity, q = NULL, start = 0, num = 1000, sortColumn = NULL,
 
 \item{num}{the number of results to return (default is 1000, max is 10000)}
 
+\item{sortColumn}{sort column of the returend list}
+
+\item{sortOrder}{sort order of the returned list}
+
 \item{attributes}{the attributes to return if NULL (default) all attributes are returned}
 }
 \value{
@@ -23,8 +27,4 @@ Dataframe with the query result
 }
 \description{
 The query must be in fiql/rsql format (see https://github.com/jirutka/rsql-parser)
-}
-\examples{
-molgenis.get(entity = "Person", q = "firstName==Piet", start = 6, num = 10)
-  
 }

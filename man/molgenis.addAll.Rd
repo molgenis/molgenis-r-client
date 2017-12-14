@@ -14,10 +14,3 @@ molgenis.addAll(entity, rows)
 \description{
 Creates new entities
 }
-\examples{
-firstName <- c("Piet", "Klaas")
-lastName  <- c("Paulusma", "de Vries")
-df <- data.frame(firstName, lastName)
-molgenis.addAll("Person", df)
-
-}

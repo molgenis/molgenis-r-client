@@ -11,12 +11,8 @@ molgenis.update(entity, id, ...)
 
 \item{id}{the id of the entity to update}
 
-\item{var.arg}{list of attribute name/value pairs}
+\item{...}{list of attribute name/value pairs}
 }
 \description{
 Updates an existing entity
-}
-\examples{
-molgenis.update(entity = "Person", id = 5, firstName = "Piet", lastName = "Paulusma")
-
 }

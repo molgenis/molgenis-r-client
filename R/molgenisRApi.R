@@ -1,7 +1,3 @@
-# Set the timezone
-options(tz="Europe/Amsterdam")
-Sys.setenv(TZ="Europe/Amsterdam")
-
 # Prevent scientific notation
 options(scipen=999)
 
@@ -24,6 +20,8 @@ local({
 #' @param password your password
 #' 
 #' @return molgenis token for further usage
+#' 
+#' @importFrom rjson toJSON fromJSON
 #' 
 #' @export
 molgenis.login <- local(function(molgenis.host, username, password) {
@@ -57,13 +55,15 @@ molgenis.logout <- local(function() {
 #' @param q the query
 #' @param start the index of the first result to return
 #' @param num the number of results to return (default is 1000, max is 10000)
+#' @param sortColumn sort column of the returend list
+#' @param sortOrder sort order of the returned list
 #' @param attributes the attributes to return if NULL (default) all attributes are returned
 #'
 #' @return Dataframe with the query result
 #'
-#' @examples 
-#' molgenis.get(entity = "Person", q = "firstName==Piet", start = 6, num = 10)
-#'   
+#' @importFrom RCurl curlEscape
+#' @importFrom utils read.csv
+#'         
 #' @export
 molgenis.get <- local(function(entity, q = NULL, start = 0, num = 1000, sortColumn= NULL, sortOrder = NULL, attributes = NULL) {
   url <- paste0(molgenis.api.url, "csv/", entity, "?molgenis-token=", molgenis.token, "&start=", start, "&num=", num, "&sortColumn=", sortColumn, "&sortOrder=", sortOrder)
@@ -90,13 +90,10 @@ molgenis.get <- local(function(entity, q = NULL, start = 0, num = 1000, sortColu
 #' Creates a new entity
 #'
 #' @param entity the entityname
-#' @param var.arg list of attribute name/value pairs
+#' @param ... list of attribute name/value pairs
 #'
 #' @return id of the created entity
 #'
-#' @examples
-#' molgenis.add(entity = "Person", firstName = "Piet", lastName = "Paulusma")
-#' 
 #' @export
 molgenis.add <- local(function(entity, ...) {
   molgenis.addList(entity, list(...))
@@ -106,13 +103,11 @@ molgenis.add <- local(function(entity, ...) {
 #'
 #' @param entity the entityname
 #' @param rows dataFrame where each row is an entity
-#'
-#' @examples
-#' firstName <- c("Piet", "Klaas")
-#' lastName  <- c("Paulusma", "de Vries")
-#' df <- data.frame(firstName, lastName)
-#' molgenis.addAll("Person", df)
 #' 
+#' @importFrom httr POST add_headers status_code content
+#' @importFrom httr content_type_json
+#' @importFrom RCurl getURL postForm basicHeaderGatherer
+#'    
 #' @export
 molgenis.addAll <- local(function(entity, rows) {
   ids <- c()
@@ -180,10 +175,7 @@ molgenis.addList <- local(function(entity, attributeList) {
 #'
 #' @param entity the entityname
 #' @param id the id of the entity to update
-#' @param var.arg list of attribute name/value pairs
-#'
-#' @examples 
-#' molgenis.update(entity = "Person", id = 5, firstName = "Piet", lastName = "Paulusma")
+#' @param ... list of attribute name/value pairs
 #'
 #' @export
 molgenis.update <- local(function(entity, id, ...) {
@@ -216,8 +208,7 @@ molgenis.update <- local(function(entity, id, ...) {
 #' @param entity entityname
 #' @param id the id of the entity to delete
 #'
-#' @examples
-#' molgenis.delete(entity = "Person", id = 5)
+#' @importFrom httr DELETE
 #'
 #' @export
 molgenis.delete <- local(function(entity, id) {
@@ -243,9 +234,6 @@ molgenis.delete <- local(function(entity, id) {
 #'
 #' @param entity the entityType name
 #' @param rows List with ids of the rows
-#'
-#' @examples
-#' molgenis.deleteList(entity = "Person", rows = c("1", "2", "3"))
 #'
 #' @export
 molgenis.deleteList <- local(function(entity, rows) {

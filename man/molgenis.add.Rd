@@ -9,15 +9,11 @@ molgenis.add(entity, ...)
 \arguments{
 \item{entity}{the entityname}
 
-\item{var.arg}{list of attribute name/value pairs}
+\item{...}{list of attribute name/value pairs}
 }
 \value{
 id of the created entity
 }
 \description{
 Creates a new entity
-}
-\examples{
-molgenis.add(entity = "Person", firstName = "Piet", lastName = "Paulusma")
-
 }

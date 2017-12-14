@@ -14,7 +14,3 @@ molgenis.deleteList(entity, rows)
 \description{
 Deletes a list of entities in an entityType.
 }
-\examples{
-molgenis.deleteList(entity = "Person", rows = c("1", "2", "3"))
-
-}

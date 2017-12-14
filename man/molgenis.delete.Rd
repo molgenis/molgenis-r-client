@@ -14,7 +14,3 @@ molgenis.delete(entity, id)
 \description{
 Deletes an existing entity
 }
-\examples{
-molgenis.delete(entity = "Person", id = 5)
-
-}
