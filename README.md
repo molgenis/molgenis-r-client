@@ -1,19 +1,19 @@
-## MOLGENIS R-spss
+## MOLGENIS R-api
 
-The MOLGENIS R-spss can load an SPSS-file into MOLGENIS, creating an EntityType and loading data into that EntityType.
+The MOLGENIS R-api can communicate with an MOLGENIS instance and perform actions on that instance.
 
 ## Usage
 
 You can import this project by executing:
 
 ```r
-library(molgenisRSpss)
+library(molgenisRApi)
 ```
 
 When you want to install the package and it's depodencies automatically you can execute:
 
 ```r
-install.packages("molgenisRSpss", dependencies = TRUE)
+install.packages("molgenisRApi", dependencies = TRUE)
 ```
 
 This will import the right dependencies when you have installed them in your own environment.
