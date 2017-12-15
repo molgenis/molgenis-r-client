@@ -11,10 +11,9 @@ Encoding: UTF-8
 LazyData: true
 Depends:
   R (>= 3.4.1)
-Imports:  
+Imports:
   RCurl (>= 1.95.4.8),
   rjson (>= 0.2.15),
   httr (>= 1.3.1),
-  ff (>= 2.2-13),
-  knitr (>= 1.17)
+  ff (>= 2.2-13)
 RoxygenNote: 6.0.1
