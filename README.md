@@ -82,3 +82,14 @@ Warning messages:
   Setting LC_MESSAGES failed, using "C" 
   Setting LC_MONETARY failed, using "C" 
 ```
+
+### Expose use methods in NAMESPACE
+
+To get rid of NOTE's in the "check-phase" of the build you have to add exposure tags in the documentation. You can do this by adding:
+
+```r
+@importFrom #package# #method1# #method2# #method3# #method4#
+@importFrom #package# #method5# #method6# etc..
+```
+
+You can add upto 4 methods per line. Then run ```devtools::document()``` to write the new NAMESPACE-file.
