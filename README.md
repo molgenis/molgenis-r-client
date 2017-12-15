@@ -12,7 +12,7 @@ In the shell type:
 
 ```r
 install.packages("molgenisRApi", dependencies = TRUE)
-library(molgenisRApi
+library(molgenisRApi)
 ```
 
 This loads the R API from the CRAN. If you take a look in your workspace by typing
