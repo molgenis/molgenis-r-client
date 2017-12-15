@@ -107,13 +107,14 @@ molgenis.add <- local(function(entity, ...) {
 #' @importFrom httr POST add_headers status_code content
 #' @importFrom httr content_type_json
 #' @importFrom RCurl getURL postForm basicHeaderGatherer
-#'    
+#' @importFrom bit chunk
+#' 
 #' @export
 molgenis.addAll <- local(function(entity, rows) {
   ids <- c()
   url <- paste0(molgenis.api.url.v2, entity)
   #only 1000 rows can be processed ad once, so make chunks of 1000
-  for(i in chunk(from = 1, to = nrow(rows), by = 1000)){
+  for(i in bit::chunk(from = 1, to = nrow(rows), by = 1000)){
     rowsChunk = rows[min(i):max(i), ]
     rowJSON = gsub("\\", "", apply(rowsChunk, 1, rjson::toJSON), fixed=T)
     entities <- paste0(rowJSON, collapse=",")
