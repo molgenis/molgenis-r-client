@@ -104,49 +104,205 @@ lines(c(0,5000), c(0, 5000))
 ```
 ![image](man/images/rs12460890-r.png)
 
-## Methods
+# Methods
 
-Some methods need some extra explanation. 
+Here is an overview of the API-methods. 
 
-### Query format
-
+**note:**
 The query must be in [fiql/rsql format](https://github.com/jirutka/rsql-parser).
 
-### Non-anonymous access
-The ASE data from the previous example is publicly available.
-To access private data, you can log in using
-
+## login
 ```
 molgenis.login("host url", "your username", "your password")
 ```
+
+To access private data, you can log in using
+
 This will create a molgenis token on the server and set it in the `molgenis.token` variable in your R workspace.
 The method will also return the token, so you can catch it in a variable. ```token <- molgenis.login()```.
 
-When you're done, you can log out using
-
+**Examples**
+```r
+token <- molgenis.login("https://molgenis01.gcc.rug.nl", "admin", "admin")
 ```
+
+
+## logout
+```r
 molgenis.logout()
 ```
+Logout from the MOLGENIS REST API and destroy the session.
 
-### Retrieving more rows
-By default, `molgenis.get` will retrieve up to 1000 rows only.
+##get
+```r
+molgenis.get (entity, q = NULL, start = 0, num = 1000, attributes = NULL)
+```
 
-If you need more rows, you can request up to 10000 rows by adding the `num` parameter:
+Retrieves entities and returns the result in a dataframe.
+
+Parameter   | Description                                       | Required | Default
+------------|---------------------------------------------------|----------|--------
+`entity`    | The entity name                                   | yes      |
+`q`         | Query string in rsql/fiql format (see below)      | No       | NULL
+`start`	    | The index of the thirst row to return             | No       | 0
+`num`       | The maximum number of rows to return (max 10000) | No       | 1000
+`attributes`| Vector of attributenames(columns) to return       | No       | All attributes
+`sortColumn`| attributeName of the column to sort on            | No       | NULL
+`sortOrder` | sort order, 'ASC' of 'DESC'                       | No       | NULL
+
+
+**Supported RSQL/FIQL query operators (see [https://github.com/jirutka/rsql-parser](https://github.com/jirutka/rsql-parser))**
+
+Operator|Symbol
+--------|------
+Logical AND | `;` or `and`
+Logical OR	| `,` or `or`
+Group | `(` and `)`
+Equal to | `==`
+Less then | `=lt=` or `<`
+Less then or equal to | `=le=` or `<=`
+Greater than | `=gt=` or `>`
+Greater tha or equal to | `=ge=` or `>=`
+
+Argument can be a single value, or multiple values in parenthesis separated by comma. Value that doesn’t contain any reserved character or a white space can be unquoted, other arguments must be enclosed in single or double quotes.			
+			
+**Examples**
 
 ```
-molgenis.get("ASE", num=2000)
-```
-will retrieve the top 2000 rows from the ASE entity.
-
-### Pagination
-You can retrieve the data page-by-page.
-
-```
-molgenis.get("ASE", num=5)
-```
-will retrieve a first page of 5 rows and
+molgenis.get("celiacsprue")
+molgenis.get("celiacsprue", num = 100000, start = 1000)
+molgenis.get("celiacsprue", attributes = c("Individual", "celiac_gender"))
+molgenis.get("celiacsprue", q = "(celiac_weight>=80 and celiac_height<180) or (celiac_gender==Female)")
+molgenis.get("celiacsprue", q = "(celiac_weight>=80;celiac_height<180),(celiac_gender==Female)")
 
 ```
-molgenis.get("ASE", num=5, start=5)
+
+<br />
+## add
 ```
-will retrieve the second page of 5 rows.
+molgenis.add(entity, ...)
+```
+
+Creates a new instance of an entity (i.e. a new row of the entity data table) and returns the id.
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entity name of the entity to create|yes
+...| Var arg list of attribute names and values|yes
+
+**Example**
+
+```
+id <- molgenis.add(entity = "Person", firstName = "Piet", lastName = "Paulusma")
+```
+
+## addAll
+```
+molgenis.addAll(entity, rows)
+```
+
+Creates new instances of an entity (i.e. adds new rows to the entity data table) and returns the ids.
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entity name of the entity to create|yes
+rows| data frame where each row represents an entity instance|yes
+
+**Example**
+
+```
+firstName <- c("Piet", "Paulusma")
+lastName <- c("Klaas", "de Vries")
+df <- data.frame(firstName, lastName)
+
+molgenis.addAll("Person", df)
+```
+
+<br />
+## update
+```
+molgenis.update(entity, id, ...)
+```
+
+Updates un existing entity
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entity name|yes
+id| The id of the entity|Yes
+...| Var arg list of attribute names and values|yes
+
+**Example**
+
+```
+molgenis.update(entity = "Person", id = 8, firstName = "Pietje", lastName = "Paulusma")
+```
+
+## delete
+```
+molgenis.delete(entity, id)
+```
+
+Deletes an entity.
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entity name|yes
+id| The id of the entity|Yes
+
+**Example**
+
+```
+molgenis.delete(entity = "Person", id = 8)
+```
+
+## deleteList
+```
+molgenis.deleteList(entity, c("id1", "id2"))
+```
+
+Deletes a list of entities in an entityType.
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entityType name|yes
+rows| List with ids of the rows|yes
+
+**Example**
+
+```
+molgenis.deleteList(entity = "Person", rows = c("1", "2", "3"))
+```
+
+## getEntityMetaData
+```
+molgenis.getEntityMetaData(entity)
+```
+
+Gets the entity metadata as list.
+
+**Example**
+
+```
+meta <- molgenis.getEntityMetaData("celiacsprue")
+meta$label
+```
+
+## getAttributeMetaData
+```
+molgenis.getAttributeMetaData(entity, attribute)
+```
+
+Gets attribute metadata as list.
+
+Parameter|Description|Required
+---------|-----------|--------
+entity| The entity name|yes
+attribute| The name of the attribute|Yes
+
+**Example**
+
+```
+attr <- molgenis.getAttributeMetaData(entity = "celiacsprue", attribute = "celiac_gender")
+attr$fieldType
+```
