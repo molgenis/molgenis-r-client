@@ -108,8 +108,7 @@ lines(c(0,5000), c(0, 5000))
 
 Here is an overview of the API-methods. 
 
-**note:**
-The query must be in [fiql/rsql format](https://github.com/jirutka/rsql-parser).
+> The query must be in [fiql/rsql format](https://github.com/jirutka/rsql-parser).
 
 ## login
 ```
@@ -133,7 +132,7 @@ molgenis.logout()
 ```
 Logout from the MOLGENIS REST API and destroy the session.
 
-##get
+## get
 ```r
 molgenis.get (entity, q = NULL, start = 0, num = 1000, attributes = NULL)
 ```
@@ -151,7 +150,7 @@ Parameter   | Description                                       | Required | Def
 `sortOrder` | sort order, 'ASC' of 'DESC'                       | No       | NULL
 
 
-**Supported RSQL/FIQL query operators (see [https://github.com/jirutka/rsql-parser](https://github.com/jirutka/rsql-parser))**
+> Supported RSQL/FIQL query operators (see [https://github.com/jirutka/rsql-parser](https://github.com/jirutka/rsql-parser))
 
 Operator|Symbol
 --------|------
