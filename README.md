@@ -1,6 +1,6 @@
-# MOLGENIS R-api
+# MOLGENIS API
 
-The MOLGENIS R-api can communicate with an MOLGENIS instance and perform actions on that instance.
+The MOLGENIS API can communicate with an MOLGENIS instance and perform actions on that instance.
 
 ## Usage
 

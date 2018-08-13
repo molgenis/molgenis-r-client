@@ -1,10 +1,10 @@
-Package: molgenisRApi
+Package: molgenisApi
 Type: Package
-Title: MOLGENIS R API
+Title: MOLGENIS API
 Version: 0.0.1
 Author: Sido Haakma <s.haakma@rug.nl>
 Maintainer: Sido Haakma <s.haakma@rug.nl>
-Description: MOLGENIS R API communicates with the MOLGENIS
+Description: MOLGENIS API communicates with the MOLGENIS
   REST API and can do data request with a secure connection.
 License: GNU Lesser General Public License
 Encoding: UTF-8

@@ -1,0 +1,3 @@
+"id","username","password_","activationCode","active","superuser","FirstName","MiddleNames","LastName","Title","Affiliation","Department","Role","Address","Phone","Email","Fax","tollFreePhone","City","Country","changePassword","use2fa","languageCode","googleAccountId"
+"aaaaczjleitfj6qwhzrctpaaae","admin","$2a$10$obwx9gjjue1RLLE9evePT.bc.kDRNeptqdQYhcJIU05zsG04tlmum",,"true","true",,,,,,,,,,"molgenis+admin@gmail.com",,,,,"false","false",,
+"aaaaczjleitfn6qwhzrctpaaae","anonymous","$2a$10$ZVOvIQF07WABXhqVW/RQN.fb7ZzUWsqV45rd0uxPBtY9llYFrPYWu",,"true","false",,,,,,,,,,"molgenis+anonymous@gmail.com",,,,,"false","false",,

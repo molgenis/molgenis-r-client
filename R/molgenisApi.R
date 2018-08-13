@@ -30,8 +30,8 @@ molgenis.login <- local(function(molgenis.host, username, password) {
   molgenis.api.url.v2 <<- paste0(molgenis.host, '/api/v2/')
   jsonRequest <- toJSON(list(username = username, password = password))
   url <- paste0(molgenis.api.url, "login")
-  jsonResponse <- postForm(url, .opts = list(postfields = jsonRequest, httpheader = c('Content-Type' = 'application/json')))
-  response <- fromJSON(jsonResponse)
+  jsonResponse <- POST(url, add_headers('Content-Type' = 'application/json'), body = jsonRequest, content_type_json())
+  response <- fromJSON(content(jsonResponse, as="text"))
   molgenis.token <<- response$token
   return(response$token)
   cat("Login success")
@@ -42,7 +42,7 @@ molgenis.login <- local(function(molgenis.host, username, password) {
 #' @export
 molgenis.logout <- local(function() {
   url <- paste0(molgenis.api.url, 'logout')
-  getURL(url, httpheader = list('x-molgenis-token' = molgenis.token))
+  GET(url, add_headers('x-molgenis-token' = molgenis.token))
   cat("Logout success")
 }, molgenis.env)
 
@@ -81,8 +81,8 @@ molgenis.get <- local(function(entity, q = NULL, start = 0, num = 1000, sortColu
   # characterClass <- c("character")
   # names(characterClass) <- c("column1")
   # read.csv(url, colClass = c(characterClass))
-  csv <- getURL(url)
-  dataFrame <- read.csv(textConnection(csv))
+  csv <- GET(url)
+  dataFrame <- read.csv(textConnection(content(csv, as="text")))
   return (dataFrame)
 }, molgenis.env)
 
@@ -106,7 +106,6 @@ molgenis.add <- local(function(entity, ...) {
 #' 
 #' @importFrom httr POST add_headers status_code content
 #' @importFrom httr content_type_json
-#' @importFrom RCurl getURL postForm basicHeaderGatherer
 #' @importFrom bit chunk
 #' 
 #' @export
@@ -143,6 +142,8 @@ molgenis.addAll <- local(function(entity, rows) {
 #'
 #' @param entity the entityname
 #' @param attributeList list of attribute name/value pairs
+#'
+#' @importFrom RCurl basicHeaderGatherer
 #'
 #' @return id of the created entity
 #' 
@@ -282,7 +283,7 @@ molgenis.getEntityType <- local(function(entity) {
 #' @export
 molgenis.getAttributeMetaData <- local(function(entity, attribute){
   url <- paste0(molgenis.api.url, entity, "/meta/", attribute)
-  responseJson <- getURL(url, httpheader = list("x-molgenis-token" = molgenis.token))
+  responseJson <- GET(url, add_headers("x-molgenis-token" = molgenis.token))
   response <- fromJSON(responseJson)
   
   return (response)
