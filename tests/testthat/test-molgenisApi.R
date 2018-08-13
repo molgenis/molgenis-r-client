@@ -10,7 +10,4 @@ with_mock_api({
     expect_is(entity, 'data.frame')
     expect_is(entity$username, 'factor')
   })
-  test_that("addAll", {
-    entity <- molgenisApi::molgenis.addAll('test', c('1', '2'))
-  })
 })
