@@ -8,8 +8,7 @@
 \usage{
 login(session, username, password)
 
-\S4method{login}{MolgenisSession}(session, username = NULL,
-  password = NULL)
+\S4method{login}{MolgenisSession}(session, username, password)
 }
 \arguments{
 \item{session}{the current session}
