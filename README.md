@@ -11,11 +11,24 @@ Start up the R environment.
 In the shell type:
 
 ```r
-install.packages("molgenisRApi", dependencies = TRUE)
-library(molgenisRApi)
+install.packages("molgenisApi", dependencies = TRUE, repos='https://registry.molgenis.org/repository/R/')
+library(molgenisApi)
 ```
 
-This loads the R API from the CRAN. If you take a look in your workspace by typing
+## Environment
+To configure a group repo as default you can create a file called `.Rprofile` in your home directory and add this snippet:
+```
+## Default repo
+local({r <- getOption("repos")
+       r["registry"] <- "https://registry.molgenis.org/repository/R/"
+       options(repos=r)
+})
+```
+
+Browse for packages here: https://registry.molgenis.org/#browse/browse:R
+
+## Functions
+This loads the API from our own CRAN. If you take a look in your workspace by typing
 
 ```
 ls()
