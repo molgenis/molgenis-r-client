@@ -1,5 +1,8 @@
 # MOLGENIS API
 
+[![codecov](https://codecov.io/gh/molgenis/molgenis-r-client/branch/master/graph/badge.svg)](https://codecov.io/gh/molgenis/molgenis-r-client)
+
+
 The MOLGENIS API can communicate with an MOLGENIS instance and perform actions on that instance.
 
 ## Usage
