@@ -1,7 +1,7 @@
 Package: molgenisApi
 Type: Package
 Title: MOLGENIS API
-Version: 0.0.1
+Version: 0.0.1.9000
 Author: Sido Haakma <s.haakma@rug.nl>
 Maintainer: Sido Haakma <s.haakma@rug.nl>
 Description: MOLGENIS API communicates with the MOLGENIS
