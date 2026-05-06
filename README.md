@@ -1,5 +1,7 @@
 # MOLGENIS API
 
+> **Note:** This R client is not compatible with the latest MOLGENIS: EMX2
+
 [![codecov](https://codecov.io/gh/molgenis/molgenis-r-client/branch/master/graph/badge.svg)](https://codecov.io/gh/molgenis/molgenis-r-client)
 
 
